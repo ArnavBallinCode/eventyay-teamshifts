@@ -1,0 +1,55 @@
+[project]
+name = "eventyay-teamshifts"
+dynamic = ["version"]
+description = "Team and shift management plugin for eventyay"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+keywords = ["Eventyay"]
+authors = [
+    {name = "FOSSASIA", email = "contact@fossasia.org"},
+]
+maintainers = [
+    {name = "FOSSASIA", email = "contact@fossasia.org"},
+]
+
+dependencies = [
+]
+
+[project.entry-points."pretix.plugin"]
+teamshifts = "teamshifts"
+
+[project.entry-points."distutils.commands"]
+build = "pretix_plugin_build.build:CustomBuild"
+
+[build-system]
+requires = [
+    "setuptools",
+    "pretix-plugin-build",
+]
+
+[project.urls]
+homepage = "https://github.com/fossasia/eventyay-teamshifts"
+repository = "https://github.com/fossasia/eventyay-teamshifts"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "teamshifts.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["teamshifts*"]
+namespaces = false
+
+[tool.ruff]
+line-length = 160
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["I"]
+ignore = ["N802", "E402"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["teamshifts"]
+known-third-party = ["eventyay"]
