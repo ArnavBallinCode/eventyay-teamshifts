@@ -1,6 +1,7 @@
 [project]
 name = "eventyay-teamshifts"
 dynamic = ["version"]
+requires-python = ">=3.12"
 description = "Team and shift management plugin for eventyay"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -15,16 +16,30 @@ maintainers = [
 dependencies = [
 ]
 
+[project.optional-dependencies]
+dev = [
+    "ruff",
+]
+test = [
+    "pytest",
+    "pytest-django",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+]
+test = [
+    "pytest",
+    "pytest-django",
+]
+
 [project.entry-points."pretix.plugin"]
 teamshifts = "teamshifts"
-
-[project.entry-points."distutils.commands"]
-build = "pretix_plugin_build.build:CustomBuild"
 
 [build-system]
 requires = [
     "setuptools",
-    "pretix-plugin-build",
 ]
 
 [project.urls]
@@ -33,6 +48,13 @@ repository = "https://github.com/fossasia/eventyay-teamshifts"
 
 [tool.setuptools]
 include-package-data = true
+
+[tool.setuptools.package-data]
+"teamshifts" = [
+    "templates/**/*",
+    "static/**/*",
+    "locale/**/*",
+]
 
 [tool.setuptools.dynamic]
 version = {attr = "teamshifts.__version__"}
@@ -46,7 +68,7 @@ line-length = 160
 target-version = "py312"
 
 [tool.ruff.lint]
-select = ["I"]
+select = ["E", "F", "I", "B", "UP"]
 ignore = ["N802", "E402"]
 
 [tool.ruff.lint.isort]
