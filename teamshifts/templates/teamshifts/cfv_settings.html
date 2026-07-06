@@ -4,6 +4,7 @@
 {% load static %}
 {% block custom_header %}
     {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'orga/css/question-toggles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'pretixcontrol/css/order-form-toggles.css' %}">
     <script defer src="{% static 'orga/js/questionToggles.js' %}"></script>
     <script defer src="{% static 'teamshifts/cfv_settings.js' %}"></script>
@@ -31,7 +32,7 @@
         <fieldset>
             <legend>{% trans "Application fields" %}</legend>
             <div class="table-responsive-sm">
-                <table class="table table-sm order-form-option-table">
+                <table class="table table-sm cfp-option-table">
                     <thead>
                         <tr>
                             <th>{% trans "Field" %}</th>
