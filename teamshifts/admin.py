@@ -63,10 +63,10 @@ class ShiftAssignmentAdmin(admin.ModelAdmin):
 
 @admin.register(TeamApplicationQuestion)
 class TeamApplicationQuestionAdmin(admin.ModelAdmin):
-    list_display = ("event", "role", "variant", "required", "position", "active")
+    list_display = ("event", "role", "variant", "required", "active")
     list_filter = ("variant", "required", "active", "event__organizer")
     search_fields = ("event__slug", "role__name")
-    ordering = ("event", "role", "position")
+    ordering = ("event", "role", "pk")
 
 
 @admin.register(TeamApplicationAnswer)
