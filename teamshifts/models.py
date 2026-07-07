@@ -321,7 +321,6 @@ class TeamApplicationQuestion(models.Model):
         verbose_name=_("Field type"),
     )
     required = models.BooleanField(default=False, verbose_name=_("Required"))
-    position = models.PositiveIntegerField(default=0, verbose_name=_("Position"))
     options = models.TextField(
         blank=True,
         verbose_name=_("Options"),
@@ -334,7 +333,7 @@ class TeamApplicationQuestion(models.Model):
     class Meta:
         verbose_name = _("Application Question")
         verbose_name_plural = _("Application Questions")
-        ordering = ["position", "pk"]
+        ordering = ["pk"]
 
     def clean(self):
         if self.role_id and self.event_id and self.role.event_id != self.event_id:

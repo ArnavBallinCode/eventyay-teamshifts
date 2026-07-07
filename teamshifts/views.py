@@ -66,7 +66,7 @@ class CFMSettingsView(EventPermissionRequiredMixin, View):
 
     def _questions(self):
         with scope(event=self.request.event):
-            return list(TeamApplicationQuestion.objects.filter(event=self.request.event).select_related("role").order_by("position", "pk"))
+            return list(TeamApplicationQuestion.objects.filter(event=self.request.event).select_related("role").order_by("pk"))
 
     def _unified_rows(self, cfm, questions):
         question_map = {q.pk: q for q in questions}
@@ -264,9 +264,6 @@ class QuestionReorderView(EventPermissionRequiredMixin, View):
 
         event = request.event
         with scope(event=event):
-            for position, item in enumerate(normalised):
-                if isinstance(item, int):
-                    TeamApplicationQuestion.objects.filter(pk=item, event=event).update(position=position)
             try:
                 cfm = event.call_for_team_members
                 cfm.field_order = normalised

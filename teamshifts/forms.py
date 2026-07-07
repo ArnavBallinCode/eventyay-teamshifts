@@ -118,7 +118,7 @@ class TeamMemberApplicationForm(forms.Form):
 
         with scopes_disabled():
             role_qs = TeamRole.objects.filter(event=event).exclude(pk__in=applied_role_ids)
-            self._questions = list(TeamApplicationQuestion.objects.filter(event=event, active=True).order_by("position", "pk"))
+            self._questions = list(TeamApplicationQuestion.objects.filter(event=event, active=True).order_by("pk"))
 
         question_map: dict[int, TeamApplicationQuestion] = {q.pk: q for q in self._questions}
 
